@@ -1,7 +1,6 @@
 package main
 
 import (
-	//"github.com/google/wire"
 	"test/server/computers"
 )
 

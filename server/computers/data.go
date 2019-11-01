@@ -2,7 +2,6 @@ package computers
 
 import (
 	"database/sql"
-	//"fmt"
 )
 
 type Computer struct {
@@ -26,13 +25,6 @@ func NewStore(db *sql.DB) *Store {
 	return &Store{Db: db}
 }
 
-/*func (s *Store) CreateComputer(name string, cpuCount int) error {
-	if len(name) < 0 {
-		return fmt.Errorf("computer name is not provided")
-	}
-	_, err := s.Db.Exec("INSERT INTO computers (name, cpuCount) VALUES ($1, $2)", name)
-	return err
-}*/
 
 func (s *Store) ListComputers() ([]*Computer, error) {
 	rows, err := s.Db.Query("SELECT id_c, name, cpucount, totaldiskspace FROM computers LIMIT 20")
@@ -80,31 +72,3 @@ func (s *Store) SetDisk() ([]*Computer, error) {
 		return res, nil
 }
 
-/*func (s *Store) CreateDisk(DiskSpace int64, id_c int64) error {
-	if DiskSpace < 0 {
-		return fmt.Errorf("disk space is not provided")
-	}
-	_, err := s.Db.Exec("INSERT INTO disks (DiskSpace, id_c) VALUES ($1, $2)", DiskSpace)
-	return err
-}
-func (s *Store) ListDisks() ([]*Disk, error) {
-	rows, err := s.Db.Query("SELECT id_d, diskSpace, id_c FROM disks LIMIT 200")
-	if err != nil {
-		return nil, err
-	}
-
-	defer rows.Close()
-
-	var result []*Disk
-	for rows.Next() {
-		var d Disk
-		if err := rows.Scan(&d.Id_d, &d.DiskSpace, &d.Id_c); err != nil {
-			return nil, err
-		}
-		result = append(result, &d)
-	}
-	if result == nil {
-		result = make([]*Disk, 0)
-	}
-	return result, nil
-}*/

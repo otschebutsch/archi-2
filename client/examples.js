@@ -1,6 +1,6 @@
-const channels = require('./computers/client');
+const computers = require('./computers/client');
 
-const client = channels.Client('http://localhost:8080');
+const client = computers.Client('http://localhost:8080');
 
 const readline = require('readline').createInterface({
   input: process.stdin,
@@ -15,7 +15,7 @@ client.listComputers()
         console.dir(list);
     })
     .catch((e) => {
-        console.log(`Problem listing available channels: ${e.message}`);
+        console.log(`Problem listing available computers: ${e.message}`);
     });
 
 
@@ -23,13 +23,13 @@ client.listComputers()
   client.setDisc()
 	.then((resp) => {
         console.log('=== Scenario 2 ===');
-        console.log('Create computer response:');
+        console.log('Attaching one of the discs to one of the computers');
 		console.log('Done');
     console.dir(resp);
 
     })
     .catch((e) => {
-        console.log(`Problem creating a new channel: ${e.message}`);
+        console.log(`Problem creating a new computer: ${e.message}`);
     });
 
 
